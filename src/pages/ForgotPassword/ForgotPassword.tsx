@@ -23,28 +23,28 @@ const ForgotPassword = () => {
     const toast = useToast();
 
     const handleSubmitLogin = (values: ForgotPasswordType) => {
-        // AuthService.ForgotPassword(values).then(
-        //     (res) => {
-        //         if (res.data.status === 'success') {
-        //             Navigate('/login');
-        //             toast({
-        //                 position: 'top-right',
-        //                 title: 'Please check your email',
-        //                 duration: 2000,
-        //                 status: 'success',
-        //             });
-        //         }
-        //     },
-        //     (err) => {
-        //         let errMsg = err.response.data.message;
-        //         toast({
-        //             position: 'top-right',
-        //             title: errMsg,
-        //             duration: 2000,
-        //             status: 'error',
-        //         });
-        //     },
-        // );
+        AuthService.ForgotPassword(values).then(
+            (res) => {
+                if (res.data.status === 'success') {
+                    Navigate('/login');
+                    toast({
+                        position: 'top-right',
+                        title: 'Please check your email',
+                        duration: 2000,
+                        status: 'success',
+                    });
+                }
+            },
+            (err) => {
+                let errMsg = err.response.data.message;
+                toast({
+                    position: 'top-right',
+                    title: errMsg,
+                    duration: 2000,
+                    status: 'error',
+                });
+            },
+        );
     };
 
     return (

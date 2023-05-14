@@ -12,20 +12,38 @@ export const RouteSidebarMenu = [
     //     name: 'Dashboard',
     //     icon: <TbLayoutDashboard />,
     // },
-
     {
-        name: 'Sit N Go Stage',
+        name: 'User Management',
         icon: <FaWpforms />,
         isParent: true,
         children: [
             {
-                path: '/create-sit-n-go-stage',
-                name: 'Create New Sit N Go Stage',
-                icon: <IoIosAdd />,
+                path: '/user-list',
+                name: 'User List',
+                icon: <VscTasklist />,
             },
+        ],
+    },
+    {
+        name: 'Article Management',
+        icon: <FaWpforms />,
+        isParent: true,
+        children: [
             {
-                path: '/list-sit-n-go-stage',
-                name: 'List Sit N Go Stage',
+                path: '/article-list',
+                name: 'Article List',
+                icon: <VscTasklist />,
+            },
+        ],
+    },
+    {
+        name: 'Comment Management',
+        icon: <FaWpforms />,
+        isParent: true,
+        children: [
+            {
+                path: '/comment-list',
+                name: 'Comment List',
                 icon: <VscTasklist />,
             },
         ],

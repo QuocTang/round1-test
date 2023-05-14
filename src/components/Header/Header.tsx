@@ -12,6 +12,7 @@ import { AuthService } from '~/services';
 import { settingMenu } from '~/utils/DataMockup';
 import Image from '../Image';
 import './Header.scss';
+import { GetState } from '~/utils/context/ContextPropvider';
 const Header = () => {
     const dispatch = useAppDispatch();
     const isOpenMenu = useAppSelector(MenuActive);
@@ -30,6 +31,7 @@ const Header = () => {
             Navigate('/login');
         }
     };
+    const { user = '' } = GetState();
 
     return (
         <div className="header fixed left-0 right-0 z-30">
@@ -60,7 +62,7 @@ const Header = () => {
                                                     <div className="icon relative w-full">
                                                         <Image
                                                             className="w-full h-full rounded-full"
-                                                            src={'d'}
+                                                            src={user.image}
                                                             alt=""
                                                         />
                                                     </div>

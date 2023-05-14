@@ -1,5 +1,5 @@
 const Config = {
-    apiUrl: 'http://localhost:5000/api/',
-    limitPage: 10,
+    apiUrl: 'http://localhost:3000/api/',
+    limitPage: 5,
 };
 export default Config;

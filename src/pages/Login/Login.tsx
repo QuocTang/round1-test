@@ -45,14 +45,27 @@ const Login = () => {
         watch,
         formState: { errors },
     } = useForm<LoginForm>({ defaultValues: initLoginForm });
+    const { setUser } = GetState();
 
     const handleSubmitLogin = (values: LoginForm) => {
+        const { email, password } = values;
+        if (email === '' || password === '') {
+            toast({
+                position: 'top-right',
+                title: 'Please fill out your information!',
+                duration: 2000,
+                status: 'error',
+            });
+            return;
+        }
         AuthService.Login(values).then(
             (res) => {
                 if (res.status === 201) {
                     let token = res?.data?.user?.token;
                     if (token) {
                         localStorage.setItem('access_token', token);
+                        localStorage.setItem('user', JSON.stringify(res?.data?.user));
+                        setUser(res?.data?.user);
                         Navigate('/');
                         toast({
                             position: 'top-right',

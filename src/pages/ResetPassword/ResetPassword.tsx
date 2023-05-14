@@ -39,7 +39,6 @@ const ResetPassword = () => {
     const toast = useToast();
 
     const handleSubmitLogin = (values: NewPasswordType) => {
-        console.log(values);
         const dataSendRequest: NewPasswordType = {
             newPassword: values.newPassword,
             token: token,

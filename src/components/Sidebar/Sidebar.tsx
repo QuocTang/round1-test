@@ -46,7 +46,7 @@ const Sidebar = () => {
                     onMouseLeave={() => handleHoverSidebar()}
                     className={`sidebar-menu fixed bg-white h-full z-[99] top-0 left-0 bottom-0 shadow-md border-r border-t border-[#e9edf4] tablet:top-[70px] 
                     transition-all duration-500
-                    ${isOpenMenu ? 'w-[70px] tablet:w-[0px] tablet:invisible' : 'w-[270px] tablet:w-[270px]'}`}
+                    ${isOpenMenu ? 'w-[90px] tablet:w-[0px] tablet:invisible' : 'w-[270px] tablet:w-[270px]'}`}
                 >
                     <motion.div
                         variants={showAnimation}
@@ -58,7 +58,7 @@ const Sidebar = () => {
                         <Link to="/" className="branch-logo font-bold text-center text-primary">
                             {/* LOGO */}
                             {/* <Logo className="w-1/4 m-auto" /> */}
-                            RPS Game
+                            Dashboard
                         </Link>
                     </motion.div>
                     <div className="side-main h-full">

@@ -28,11 +28,6 @@ export type UpdateProfileType = {
     image?: [key: string] | undefined;
 };
 
-interface TimeRange {
-    startDate: string;
-    endDate: string;
-}
-
 // MONGO TYPE
 export type MongoType = {
     createdAt: string;
@@ -41,141 +36,55 @@ export type MongoType = {
     _id: string;
 };
 
-////SIT N GO STAGE
-export type SitNGoStageType = {
-    stageIndex: number;
-    stageName: string;
-    actionTime: string;
-    entryFees: number;
-    houseFees: number;
-    numberOfWin: number;
-    payoutType: string;
-    payoutId: string;
-    isPublished: boolean;
-};
-
-export type ListSitNGoStageType = SitNGoStageType & MongoType;
-
-export type FilterListSitNGoStageType = {
-    stageName: string;
-    page: number;
-};
-
-// PAYOUT
-export type SelectPayoutType = {
-    tournamentType: string;
-};
-
-export type CreatePayoutType = {
-    name: string;
-} & SelectPayoutType;
-
-export type ListPayoutType = CreatePayoutType & MongoType;
-
-export type CreateInViewPayoutType = {
-    numberOfWinners: number;
-    minPlayers: number;
-    tournamentType: string;
-    maxPlayers: number;
-    payoutId: string;
-    payoutRecord?: KcoinsType[];
-    nftRecord?: NftTokenType[];
-};
-
-export type NftTokenType = {
-    nftName: string;
-    nftImage: any;
-    isUpload?: boolean;
-};
-
-export type KcoinsType = {
-    playerRank: string;
-    playerPayout: number | string;
-};
-
-export type CreateInViewPayout_KCOINS = {
-    payoutRecord: KcoinsType[];
-} & CreateInViewPayoutType;
-
-export type CreateInViewPayout_NFTTOKEN = {
-    nftRecord: NftTokenType[];
-} & CreateInViewPayoutType;
-
-export type DeleteInViewPayoutType = {
-    idPayoutInfo: string;
-    idChildPayout: string;
-};
-
-// CASHOUT
-export type FilterListPendingCashOutReQuestType = {
-    userName: string;
-    referenceNo: string;
-    profile: string;
-    requestedAt?: { $gte?: string; $lte?: string };
-    skip: number;
-    limit: number;
-};
-
-export type FilterListCashOutPaymentType = Omit<FilterListPendingCashOutReQuestType, 'requestedAt'>;
-
-export type FilterListCashOutHistoryType = {
-    status: string;
-    bankTransactionId: string;
-    createdAt?: {
-        $gte?: number;
-        $lte?: number;
-    };
-} & Omit<FilterListPendingCashOutReQuestType, 'requestedAt' | 'profile'>;
-
-export type FilterListPendingCashOutCountType = Omit<FilterListPendingCashOutReQuestType, 'skip' | 'limit'>;
-export type FilterListCashOutPaymentCountType = Omit<FilterListCashOutPaymentType, 'skip' | 'limit'>;
-export type FilterListCashOutHistoryCountType = Omit<FilterListCashOutHistoryType, 'skip' | 'limit'>;
-
-// ADMIN
-export type CreateAdminType = {
+// USER
+export type UserType = {
+    bio: string;
+    email: string;
+    id: string;
+    image: string;
     username: string;
-    password: string;
-    roles: string;
 };
 
-// PASSBOOK
-export type PassBookSearchType = {
-    startDate: string;
-    endDate: string;
-    player: string;
-    parentOrAgent: string;
-    category: string;
-    subCategory: string;
-    tableName: string;
+export type UserProfilesType = {
+    bio: string;
+    image: string;
+    username: string;
+    following: boolean;
 };
 
-// CHIPS
-export type CreateTransferChipsType = {
-    transferTo: string;
-    amount: string;
-    transactionType: string;
+// AUTHOR
+export type Author = {
+    id: number;
+    username: string;
+    email: string;
+    bio: string;
+    image: string;
+};
+
+// ARTICLE
+export type ArticleType = {
+    id: number;
+    slug: string;
+    title: string;
     description: string;
-    role: object;
-    transferBy: string;
-    approvedBy: string;
-    name: string;
-    parentEmail: string;
-    parentMobile: string;
+    body: string;
+    created: number;
+    updated: number;
+    tagList: string[];
+    favoriteCount: number;
+    author: Author;
 };
 
-export type FilterTransferHistoryPlayerType = {
-    startDate?: number;
-    endDate?: number;
-    transferTo: string;
-    transferBy: string;
-    userName: string;
-    skip?: number;
-    limit?: number;
-    role?: { name: string; level: number };
+export type ArticleProfilesType = Omit<ArticleType, 'author'> & {
+    comments: CommentType[];
 };
 
-// EMAIL
-export type FilterEmailType = {
-    email?: string;
-    page?: number;
+export type UpdateArticleType = Pick<ArticleType, 'title' | 'description' | 'body' | 'tagList'>;
+
+// COMMENT
+export type CommentType = {
+    id: number;
+    body: string;
+    created: number;
+    author: Author;
 };
